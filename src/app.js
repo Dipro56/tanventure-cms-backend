@@ -23,10 +23,12 @@ import userRouter from './routes/user.routes.js';
 import informationRouter from './routes/information.routes.js';
 // import bookingRouter from './routes/booking.routes.js';
 import authRouter from './routes/auth.routes.js';
+import packageRouter from './routes/package.routes.js';
 // import teamRouter from './routes/team.routes.js';
 // //routes declaration
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/info', informationRouter);
+app.use('/api/v1/packages', packageRouter);
 // app.use('/api/v1/slot', slotRouter);
 // app.use('/api/v1/booking', bookingRouter);
 // app.use('/api/v1/team', teamRouter);

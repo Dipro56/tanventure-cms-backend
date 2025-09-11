@@ -26,19 +26,18 @@ const login = asyncHandler(async (req, res) => {
   if (!username || !password) {
     return res
       .status(400)
-      .json(new ApiResponse(400, {}, 'Username  & password both required'));
+      .json(new ApiResponse(400, {}, 'Username & password both required'));
   }
 
   const existedUser = await User.findOne({ username: username });
 
   if (existedUser) {
-    // const user = await User.findOne({ username: username });
-    // console.log('user', user);
     const { accessToken } = await generateAccessAndRefereshTokens(
       existedUser._id
     );
+
     const loggedInUser = await User.findById(existedUser._id).select(
-      '-createdAt -updatedAt -__v'
+      '-password -createdAt -updatedAt -__v'
     );
 
     const options = {
@@ -46,22 +45,19 @@ const login = asyncHandler(async (req, res) => {
       secure: true,
     };
 
-    return (
-      res
-        .status(200)
-        .cookie('accessToken', accessToken, options)
-        // .cookie("refreshToken", refreshToken, options)
-        .json(
-          new ApiResponse(
-            200,
-            {
-              user: loggedInUser,
-              accessToken,
-            },
-            'User logged in Successfully'
-          )
+    return res
+      .status(200)
+      .cookie('accessToken', accessToken, options)
+      .json(
+        new ApiResponse(
+          200,
+          {
+            user: loggedInUser,
+            accessToken,
+          },
+          'User logged in Successfully'
         )
-    );
+      );
   } else {
     return res.status(400).json(new ApiResponse(400, {}, 'User not found'));
   }
