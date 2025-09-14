@@ -21,17 +21,19 @@ app.use(cookieParser());
 // //routes import
 import userRouter from './routes/user.routes.js';
 import informationRouter from './routes/information.routes.js';
-// import bookingRouter from './routes/booking.routes.js';
 import authRouter from './routes/auth.routes.js';
 import packageRouter from './routes/package.routes.js';
-// import teamRouter from './routes/team.routes.js';
+import bannerRouter from './routes/banner.routes.js';
+import blogRouter from './routes/blog.routes.js';
+import reviewRouter from './routes/review.routes.js';
+
 // //routes declaration
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/info', informationRouter);
 app.use('/api/v1/packages', packageRouter);
-// app.use('/api/v1/slot', slotRouter);
-// app.use('/api/v1/booking', bookingRouter);
-// app.use('/api/v1/team', teamRouter);
+app.use('/api/v1/banner', bannerRouter);
+app.use('/api/v1/blog', blogRouter);
+app.use('/api/v1/review', reviewRouter);
 app.use('/api/v1/auth', authRouter);
 // // http://localhost:8000/api/v1/users/register
 
