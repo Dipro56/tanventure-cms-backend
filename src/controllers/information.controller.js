@@ -3,8 +3,16 @@ import { ApiResponse } from '../utils/ApiResponse.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 
 const createInfo = asyncHandler(async (req, res) => {
-  const { email, phone, address, instaLink, facebookLink, ticktokLink } =
-    req.body;
+  const {
+    email,
+    phone,
+    address,
+    whatsAppNumber,
+    instaLink,
+    facebookLink,
+    ticktokLink,
+    aboutUs,
+  } = req.body;
 
   try {
     // Check if the information already exists
@@ -15,9 +23,12 @@ const createInfo = asyncHandler(async (req, res) => {
       info.email = email || info.email;
       info.phone = phone || info.phone;
       info.address = address || info.address;
+      info.whatsAppNumber = whatsAppNumber || info.whatsAppNumber;
       info.instaLink = instaLink || info.instaLink;
       info.facebookLink = facebookLink || info.facebookLink;
       info.ticktokLink = ticktokLink || info.ticktokLink;
+      info.aboutUs = aboutUs || info.aboutUs;
+
       await info.save();
 
       return res
@@ -29,9 +40,11 @@ const createInfo = asyncHandler(async (req, res) => {
         email,
         phone,
         address,
+        whatsAppNumber,
         instaLink,
         facebookLink,
         ticktokLink,
+        aboutUs,
       });
 
       return res

@@ -17,6 +17,11 @@ const informationSchema = new Schema(
       trim: true,
       index: true,
     },
+    whatsAppNumber: {
+      type: String,
+      trim: true,
+      index: true,
+    },
     facebookLink: {
       type: String,
       trim: true,
@@ -32,6 +37,11 @@ const informationSchema = new Schema(
       trim: true,
       index: true,
     },
+    aboutUs: {
+      type: String,
+      trim: true,
+      maxlength: [2000, 'About us description cannot exceed 2000 characters'],
+    },
   },
   {
     timestamps: true,
@@ -39,6 +49,7 @@ const informationSchema = new Schema(
 );
 
 informationSchema.pre('save', async function (next) {
+  // You can add any pre-save logic here if needed
   next();
 });
 
